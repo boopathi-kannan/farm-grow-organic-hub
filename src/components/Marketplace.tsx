@@ -1,9 +1,8 @@
-
 import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { ShoppingCart, Filter } from "lucide-react";
+import { ShoppingCart, Filter, Tractor } from "lucide-react";
 
 interface Product {
   id: number;
@@ -69,6 +68,33 @@ const products: Product[] = [
     category: "produce",
     seller: "Earth Bounty Farms",
     unit: "per kg"
+  },
+  {
+    id: 7,
+    name: "Farm Tractor",
+    price: 24999.99,
+    image: "https://placehold.co/300x200/f8f8f8/4a4a4a?text=Tractor",
+    category: "equipment",
+    seller: "AgriMachine Co.",
+    unit: "per unit"
+  },
+  {
+    id: 8,
+    name: "Harvester Machine",
+    price: 18499.99,
+    image: "https://placehold.co/300x200/f8f8f8/4a4a4a?text=Harvester",
+    category: "equipment",
+    seller: "FarmTech Solutions",
+    unit: "per unit"
+  },
+  {
+    id: 9,
+    name: "Delivery Truck",
+    price: 15999.99,
+    image: "https://placehold.co/300x200/f8f8f8/4a4a4a?text=Truck",
+    category: "equipment",
+    seller: "Transport Fleet Ltd.",
+    unit: "per unit"
   }
 ];
 
@@ -79,7 +105,6 @@ const Marketplace = () => {
     ? products 
     : products.filter(product => product.category === activeTab);
 
-  // Helper function to render product cards
   const renderProductCards = (products: Product[]) => (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
       {products.map((product) => (
@@ -110,7 +135,7 @@ const Marketplace = () => {
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold mb-4 text-farm-brown-500">Organic Marketplace</h2>
           <p className="text-xl max-w-2xl mx-auto text-farm-brown-400">
-            Buy and sell fresh organic produce, seeds, and farming supplies
+            Buy and sell fresh organic produce, seeds, farming supplies, and equipment
           </p>
         </div>
         
@@ -128,6 +153,10 @@ const Marketplace = () => {
               </TabsTrigger>
               <TabsTrigger value="dairy" className="data-[state=active]:bg-farm-green-500 data-[state=active]:text-white">
                 Dairy & Eggs
+              </TabsTrigger>
+              <TabsTrigger value="equipment" className="data-[state=active]:bg-farm-green-500 data-[state=active]:text-white">
+                <Tractor className="h-4 w-4 mr-2" />
+                Equipment
               </TabsTrigger>
             </TabsList>
             
@@ -150,6 +179,10 @@ const Marketplace = () => {
           </TabsContent>
           
           <TabsContent value="dairy" className="m-0">
+            {renderProductCards(filteredProducts)}
+          </TabsContent>
+
+          <TabsContent value="equipment" className="m-0">
             {renderProductCards(filteredProducts)}
           </TabsContent>
         </Tabs>
