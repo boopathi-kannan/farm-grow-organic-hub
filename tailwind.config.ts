@@ -32,6 +32,20 @@ export default {
 					DEFAULT: 'hsl(var(--secondary))',
 					foreground: 'hsl(var(--secondary-foreground))'
 				},
+				farm: {
+					"green-100": "#E7F3D4",
+					"green-200": "#C5E1A5",
+					"green-300": "#AED581",
+					"green-400": "#8BC34A",
+					"green-500": "#689F38",
+					"green-600": "#558B2F",
+					"brown-100": "#EFEBE9",
+					"brown-200": "#D7CCC8",
+					"brown-300": "#A1887F",
+					"brown-400": "#795548",
+					"brown-500": "#5D4037",
+					"accent": "#FF8F00",
+				},
 				destructive: {
 					DEFAULT: 'hsl(var(--destructive))',
 					foreground: 'hsl(var(--destructive-foreground))'
