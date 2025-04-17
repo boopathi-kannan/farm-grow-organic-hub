@@ -79,6 +79,31 @@ const Marketplace = () => {
     ? products 
     : products.filter(product => product.category === activeTab);
 
+  // Helper function to render product cards
+  const renderProductCards = (products: Product[]) => (
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {products.map((product) => (
+        <Card key={product.id} className="overflow-hidden hover:shadow-lg transition-shadow">
+          <img 
+            src={product.image} 
+            alt={product.name} 
+            className="w-full h-48 object-cover"
+          />
+          <CardContent className="p-4">
+            <div className="flex justify-between items-start mb-2">
+              <h3 className="font-bold text-farm-brown-500">{product.name}</h3>
+              <span className="font-bold text-farm-green-600">${product.price} <span className="text-xs font-normal text-farm-brown-400">{product.unit}</span></span>
+            </div>
+            <p className="text-sm text-farm-brown-400 mb-4">Seller: {product.seller}</p>
+            <Button className="w-full bg-farm-green-500 hover:bg-farm-green-600">
+              <ShoppingCart className="h-4 w-4 mr-2" /> Add to Cart
+            </Button>
+          </CardContent>
+        </Card>
+      ))}
+    </div>
+  );
+
   return (
     <section className="py-16" id="marketplace">
       <div className="container mx-auto px-4">
@@ -89,7 +114,7 @@ const Marketplace = () => {
           </p>
         </div>
         
-        <Tabs defaultValue="all" className="w-full mb-8" onValueChange={setActiveTab}>
+        <Tabs defaultValue="all" value={activeTab} onValueChange={setActiveTab} className="w-full mb-8">
           <div className="flex justify-between items-center mb-6">
             <TabsList className="bg-farm-green-100">
               <TabsTrigger value="all" className="data-[state=active]:bg-farm-green-500 data-[state=active]:text-white">
@@ -113,99 +138,19 @@ const Marketplace = () => {
           </div>
           
           <TabsContent value="all" className="m-0">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {filteredProducts.map((product) => (
-                <Card key={product.id} className="overflow-hidden hover:shadow-lg transition-shadow">
-                  <img 
-                    src={product.image} 
-                    alt={product.name} 
-                    className="w-full h-48 object-cover"
-                  />
-                  <CardContent className="p-4">
-                    <div className="flex justify-between items-start mb-2">
-                      <h3 className="font-bold text-farm-brown-500">{product.name}</h3>
-                      <span className="font-bold text-farm-green-600">${product.price} <span className="text-xs font-normal text-farm-brown-400">{product.unit}</span></span>
-                    </div>
-                    <p className="text-sm text-farm-brown-400 mb-4">Seller: {product.seller}</p>
-                    <Button className="w-full bg-farm-green-500 hover:bg-farm-green-600">
-                      <ShoppingCart className="h-4 w-4 mr-2" /> Add to Cart
-                    </Button>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
+            {renderProductCards(filteredProducts)}
           </TabsContent>
           
           <TabsContent value="produce" className="m-0">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {filteredProducts.map((product) => (
-                <Card key={product.id} className="overflow-hidden hover:shadow-lg transition-shadow">
-                  <img 
-                    src={product.image} 
-                    alt={product.name} 
-                    className="w-full h-48 object-cover"
-                  />
-                  <CardContent className="p-4">
-                    <div className="flex justify-between items-start mb-2">
-                      <h3 className="font-bold text-farm-brown-500">{product.name}</h3>
-                      <span className="font-bold text-farm-green-600">${product.price} <span className="text-xs font-normal text-farm-brown-400">{product.unit}</span></span>
-                    </div>
-                    <p className="text-sm text-farm-brown-400 mb-4">Seller: {product.seller}</p>
-                    <Button className="w-full bg-farm-green-500 hover:bg-farm-green-600">
-                      <ShoppingCart className="h-4 w-4 mr-2" /> Add to Cart
-                    </Button>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
+            {renderProductCards(filteredProducts)}
           </TabsContent>
           
           <TabsContent value="supplies" className="m-0">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {filteredProducts.map((product) => (
-                <Card key={product.id} className="overflow-hidden hover:shadow-lg transition-shadow">
-                  <img 
-                    src={product.image} 
-                    alt={product.name} 
-                    className="w-full h-48 object-cover"
-                  />
-                  <CardContent className="p-4">
-                    <div className="flex justify-between items-start mb-2">
-                      <h3 className="font-bold text-farm-brown-500">{product.name}</h3>
-                      <span className="font-bold text-farm-green-600">${product.price} <span className="text-xs font-normal text-farm-brown-400">{product.unit}</span></span>
-                    </div>
-                    <p className="text-sm text-farm-brown-400 mb-4">Seller: {product.seller}</p>
-                    <Button className="w-full bg-farm-green-500 hover:bg-farm-green-600">
-                      <ShoppingCart className="h-4 w-4 mr-2" /> Add to Cart
-                    </Button>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
+            {renderProductCards(filteredProducts)}
           </TabsContent>
           
           <TabsContent value="dairy" className="m-0">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {filteredProducts.map((product) => (
-                <Card key={product.id} className="overflow-hidden hover:shadow-lg transition-shadow">
-                  <img 
-                    src={product.image} 
-                    alt={product.name} 
-                    className="w-full h-48 object-cover"
-                  />
-                  <CardContent className="p-4">
-                    <div className="flex justify-between items-start mb-2">
-                      <h3 className="font-bold text-farm-brown-500">{product.name}</h3>
-                      <span className="font-bold text-farm-green-600">${product.price} <span className="text-xs font-normal text-farm-brown-400">{product.unit}</span></span>
-                    </div>
-                    <p className="text-sm text-farm-brown-400 mb-4">Seller: {product.seller}</p>
-                    <Button className="w-full bg-farm-green-500 hover:bg-farm-green-600">
-                      <ShoppingCart className="h-4 w-4 mr-2" /> Add to Cart
-                    </Button>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
+            {renderProductCards(filteredProducts)}
           </TabsContent>
         </Tabs>
         
